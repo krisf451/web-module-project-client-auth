@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-function Header() {
+function Header(props) {
+  let logged = localStorage.getItem("token");
   return (
     <nav className="header">
       <Link to="/">
@@ -19,9 +20,11 @@ function Header() {
         <Link className="header_link" to="/logout">
           <span>Logout</span>
         </Link>
-        <Link className="header_link" to="/friends">
-          <span>Friends</span>
-        </Link>
+        {logged && (
+          <Link className="header_link" to="/friends">
+            <span>Friends</span>
+          </Link>
+        )}
       </div>
     </nav>
   );

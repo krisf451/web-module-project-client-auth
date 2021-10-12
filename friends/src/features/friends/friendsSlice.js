@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import axiosWithAuth from "../../utils/axiosWithAuth";
 
 export const fetchAsyncFriends = createAsyncThunk(
   "friends/fetchAsyncFriends",
   async () => {
-    const res = await axios.get(`http://localhost:5000/api/friends`);
+    const res = await axiosWithAuth().get(`http://localhost:5000/api/friends`);
     return res.data;
   }
 );

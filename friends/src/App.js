@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import FriendsList from "./components/FriendsList";
 import FriendDetails from "./components/FriendDetails";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -15,21 +16,11 @@ function App() {
       <Router>
         <Header />
         <Switch>
-          <Route path="/friends/:id">
-            <FriendDetails />
-          </Route>
-          <Route path="/friends">
-            <FriendsList />
-          </Route>
-          <Route path="/logout">
-            <Logout />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/">
-            <Login />
-          </Route>
+          <PrivateRoute path="/friends/:id" component={FriendDetails} />
+          <PrivateRoute path="/friends" component={FriendsList} />
+          <PrivateRoute path="/logout" component={Logout} />
+          <Route path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
         </Switch>
         <Footer />
       </Router>
