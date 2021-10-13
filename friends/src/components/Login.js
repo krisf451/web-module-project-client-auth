@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import "./Login.css";
 
+import { useDispatch } from "react-redux";
+import { getCurrentUser } from "../features/friends/friendsSlice";
+
 import axios from "axios";
 
 const Login = () => {
   const { push } = useHistory();
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({
     credentials: {
       username: "",
       password: "",
+      isLogged: true,
     },
   });
 
@@ -30,6 +36,7 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.payload);
+        dispatch(getCurrentUser(state.credentials));
         push("/friends");
       })
       .catch((err) => {

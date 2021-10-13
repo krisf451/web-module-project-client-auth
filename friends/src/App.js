@@ -9,6 +9,7 @@ import Logout from "./components/Logout";
 import FriendsList from "./components/FriendsList";
 import FriendDetails from "./components/FriendDetails";
 import PrivateRoute from "./components/PrivateRoute";
+import AddFriendForm from "./components/AddFriendForm";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Router>
         <Header />
         <Switch>
+          <PrivateRoute path="/friends/addFriend" component={AddFriendForm} />
           <PrivateRoute path="/friends/:id" component={FriendDetails} />
           <PrivateRoute path="/friends" component={FriendsList} />
           <PrivateRoute path="/logout" component={Logout} />

@@ -11,14 +11,21 @@ export const fetchAsyncFriends = createAsyncThunk(
 
 const initialState = {
   friends: [],
+  user: {},
 };
 
 const friendsSlice = createSlice({
   name: "friends",
   initialState,
   reducers: {
-    addFriends: (state, action) => {
+    addFriend: (state, action) => {
       state.friends.push(action.payload);
+    },
+    getCurrentUser: (state, action) => {
+      state.user = action.payload;
+    },
+    logout: (state) => {
+      state.user = {};
     },
   },
   extraReducers: {
@@ -35,6 +42,7 @@ const friendsSlice = createSlice({
   },
 });
 
-export const { getFriends } = friendsSlice.actions;
+export const { addFriend, getCurrentUser, logout } = friendsSlice.actions;
 export const getAllFriends = (state) => state.friends.friends;
+export const getUserState = (state) => state.friends.user;
 export default friendsSlice.reducer;

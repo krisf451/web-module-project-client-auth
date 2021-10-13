@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import { useSelector } from "react-redux";
+import { getUserState } from "./../features/friends/friendsSlice";
 
-function Header(props) {
-  let logged = localStorage.getItem("token");
+function Header() {
+  const data = useSelector(getUserState);
+  console.log("DATA", data);
   return (
     <nav className="header">
       <Link to="/">
@@ -20,9 +23,14 @@ function Header(props) {
         <Link className="header_link" to="/logout">
           <span>Logout</span>
         </Link>
-        {logged && (
+        {data.isLogged && (
           <Link className="header_link" to="/friends">
             <span>Friends</span>
+          </Link>
+        )}
+        {data.isLogged && (
+          <Link className="header_link" to="/friends/addFriend">
+            <span>Add New Friend</span>
           </Link>
         )}
       </div>

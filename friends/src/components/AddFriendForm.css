@@ -1,0 +1,31 @@
+.add-form-container {
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.add-form-container > h1 {
+  margin-bottom: 30px;
+}
+.add-form-container form {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+.add-form-container > form > button {
+  height: 30px;
+  background-color: lightpink;
+}
+.add-form-container > form > input {
+  padding: 6px;
+  border: 0.5px solid black;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin-bottom: 10px;
+}
+.add-form-container > form > input:focus {
+  outline: none;
+}
