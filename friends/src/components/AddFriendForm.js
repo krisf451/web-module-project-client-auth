@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import "./AddFriendForm.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addFriend, getAllFriends } from "../features/friends/friendsSlice";
+import {
+  postAsyncFriend,
+  getAllFriends,
+} from "../features/friends/friendsSlice";
+import { useHistory } from "react-router-dom";
 
 const AddFriendForm = () => {
+  const { push } = useHistory();
   const dispatch = useDispatch();
   const friends = useSelector(getAllFriends);
   console.log("FRIENDS: ", friends);
@@ -15,13 +20,14 @@ const AddFriendForm = () => {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addFriend(state));
+    dispatch(postAsyncFriend(state));
     setState({
       ...state,
       name: "",
       age: "",
       email: "",
     });
+    push("/friends");
   };
   const handleChange = (e) => {
     setState({

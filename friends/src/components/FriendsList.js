@@ -10,7 +10,7 @@ import FriendCard from "./FriendCard";
 const FriendsList = () => {
   const dispatch = useDispatch();
   const friends = useSelector(getAllFriends);
-  console.log(friends);
+  // console.log(friends);
 
   useEffect(() => {
     dispatch(fetchAsyncFriends());

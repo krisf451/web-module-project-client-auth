@@ -8,6 +8,17 @@ export const fetchAsyncFriends = createAsyncThunk(
     return res.data;
   }
 );
+export const postAsyncFriend = createAsyncThunk(
+  "friends/postAsyncFriend",
+  async (newUser) => {
+    const res = await axiosWithAuth().post(
+      `http://localhost:5000/api/friends`,
+      newUser
+    );
+    addFriend(newUser);
+    return res.data;
+  }
+);
 
 const initialState = {
   friends: [],
@@ -38,6 +49,10 @@ const friendsSlice = createSlice({
     },
     [fetchAsyncFriends.rejected]: () => {
       console.log("Fetch Failed");
+    },
+    [postAsyncFriend.fulfilled]: (state, action) => {
+      console.log("Posted Successfully!");
+      return { ...state, friends: [...state.friends, action.payload] };
     },
   },
 });
